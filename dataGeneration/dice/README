@@ -1,0 +1,3 @@
+Features of the dice class:
+
+The dice class uses the minstd_rand0 class for random number generation.  It employs a static pointer to this class so that it uses a single instance of the random seed for the best pseudorandom data.  Each time a new die is created, the static nDiceInst variable is incremented and upon deletion of the final instance, the pointer to the random number generator is deleted.  There is an option to pass a verbose operator to the constructor (or through a separate member function) to see how these mechanics work.
