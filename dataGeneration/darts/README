@@ -1,0 +1,3 @@
+Features of the dice class:
+
+The darts class uses the minstd_rand0 class for random number generation (using a static instance of this class, see the dice readme for more detail).  It’s purpose is to generate a flat random coordinate in the x, y plane.  It may be expanded upon in the future to include the other distributions for the throws (incorporate ‘skilled aiming’).  The main program uses this class to estimate pi by throwing darts in a square that extends from the origin to unit 1 in both x&y, and then comparing the ratio of darts that land within the circle as opposed to outside it.
