@@ -1,0 +1,5 @@
+Features of the deckOfCards class:
+
+The deck of cards creates a deque (play on words was only a secondary benefit) of dynamically allocated card objects.  The card class is constructed based on an absolute index ranging from 1-52 which does not maintain any meaning, so it is translated to a rank and suit.  A separate constructor passing suit and rank also exists, but is comparatively cumbersome.  The deck becomes a random object through the shuffle function.  Similarly to a new deck, the more times it is shuffled, the less predictable the order.  The shuffle function uses a random number to supplement the usual one card per half for a 2nd, similar to the mechanics of shuffling.
+
+The main program is very simple demonstrating that once a card object is dealt, memory maintenance for that card object must be done manually.
