@@ -9,6 +9,8 @@
 
 int probDist::factorial(const unsigned int& nN)
 {
+  if( nN==0) return 1;
+
   if(bVerbose) cout << nN << "*" << flush;
   if(nN>1) return (nN*this->factorial(nN-1));
   if(bVerbose) cout << endl << flush;
