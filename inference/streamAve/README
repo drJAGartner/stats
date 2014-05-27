@@ -1,0 +1,3 @@
+streamAve is a class for calculating an average and variance on a large number of entries.
+
+The main program demonstrates it's effectiveness when compared to direct calculation.
