@@ -61,7 +61,7 @@ int main(int argc, char *argv[])
   cout << "Using Knuth method, the variance is: " << pRecorder->GetStandardDeviation() << endl;
   cout << "Using direct computation, the variance is:" << oldStdDev << endl << endl;
   
-  cout << "Test2: Sum of 2, 100 sided dice rolls" << endl;
+  cout << "Test3: Sum of 2, 100 sided dice rolls" << endl;
   dice *myDice100 = new dice(100, false);
   pRecorder->Reset();
   sumX=0.0;
