@@ -1,7 +1,8 @@
 /******************************************************
- * darts.cc								*
- * A dart gives a random floating x, y coordinate	*
- * v1.0 - April 2, 2014						*
+ * streamAve.cc                                       *
+ *                                                    *
+ * V1.0 - May 26, 2014                                *
+ *  Calculates means via knuth alone                  *
  *****************************************************/
 
 #include "./streamAve.h"
@@ -34,7 +35,7 @@ double streamAve::GetMean()
 
 double streamAve::GetVariance()
 {
-  return (nEntry>0) ? nVar/(nEntry-1) : 0.0;
+  return (nEntry>1) ? nVar/(nEntry-1) : 0.0;
 }
 
 double streamAve::GetStandardDeviation()

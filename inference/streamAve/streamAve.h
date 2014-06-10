@@ -1,5 +1,3 @@
-// dice object for dice rolling experiments
-
 #ifndef STREAMAVE_H
 #define STREAMAVE_H
 
@@ -23,6 +21,8 @@ private:
 	int nEntry;
   double nAve;
   double nVar;
+  double sumX;
+  double sumX2;
 };
 
 #endif
