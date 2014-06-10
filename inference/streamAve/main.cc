@@ -8,6 +8,7 @@
 
 
 #include "./streamAve.h"
+#include "./streamStat.h"
 #include "/Users/josephgartner/Projects/stats/dataGeneration/dice/dice.h"
 
 #include <iostream>
@@ -27,60 +28,39 @@ int main(int argc, char *argv[])
   cout << "Testing methods on " << nEntries << " numbers." << endl;
   
   cout << "Test 1: Alternating 1, 0" << endl;
-  double sumX=0.0;
-  double sumX2=0.0;
-  streamAve *pRecorder = new streamAve();
+  streamAve *pAve = new streamAve();
+  streamStat *pStat = new streamStat();
   for(int j=0; j<nEntries; j++)
   {
     double pVal = (j*1)%2;
-    pRecorder->EnterData(pVal);
-    sumX += pVal;
-    sumX2 += pVal*pVal;
+    pAve->EnterData(pVal);
+    pStat->EnterData(pVal, 0);
   }
   
-  double oldStdDev = sqrt((1.0/nEntries)*(sumX2-sumX*sumX/nEntries));
-  cout << "Using Knuth method, the variance is: " << pRecorder->GetStandardDeviation() << endl;
-  cout << "Using direct computation, the variance is:" << oldStdDev << endl << endl;
+  cout << "Using Knuth method, the variance is: " << pAve->GetStandardDeviation() << endl;
+  cout << "Using direct computation, the variance is:" << pStat->GetStandardDeviation(false) << endl << endl;
   
   cout << "Test2: Sum of 2, 6 sided dice rolls" << endl;
   dice *myDice6 = new dice(6, false);
-  pRecorder->Reset();
-  sumX=0.0;
-  sumX2=0.0;
-  
+  pAve->Reset();
+  pStat->Reset();
   for(int j=0; j<nEntries; j++)
   {
-    double pVal = myDice6->rollDice() + myDice6->rollDice();
-    pRecorder->EnterData(pVal);
-    sumX += pVal;
-    sumX2 += pVal*pVal;
+    double roll1 = myDice6->rollDice();
+    double rollSum =  roll1 + myDice6->rollDice();
+    pAve->EnterData(rollSum);
+    pStat->EnterData(roll1, rollSum);
   
   }
   
-  oldStdDev = sqrt((1.0/nEntries)*(sumX2-sumX*sumX/nEntries));
-  cout << "Using Knuth method, the variance is: " << pRecorder->GetStandardDeviation() << endl;
-  cout << "Using direct computation, the variance is:" << oldStdDev << endl << endl;
+  cout << "Using Knuth method, the variance is: " << pAve->GetStandardDeviation() << endl;
+  cout << "Using direct computation, the variance is:" << pStat->GetStandardDeviation() << endl;
   
-  cout << "Test3: Sum of 2, 100 sided dice rolls" << endl;
-  dice *myDice100 = new dice(100, false);
-  pRecorder->Reset();
-  sumX=0.0;
-  sumX2=0.0;
-  
-  for(int j=0; j<nEntries; j++)
-  {
-    double pVal = myDice100->rollDice() + myDice100->rollDice();
-    pRecorder->EnterData(pVal);
-    sumX += pVal;
-    sumX2 += pVal*pVal;
-  
-  }
-  
-  oldStdDev = sqrt((1.0/nEntries)*(sumX2-sumX*sumX/nEntries));
-  cout << "Using Knuth method, the variance is: " << pRecorder->GetStandardDeviation() << endl;
-  cout << "Using direct computation, the variance is:" << oldStdDev << endl;
+  cout << "Covariance between roll 1 and sum of rolls is: " << pStat->GetCovariance() << endl;
+  cout << "Correlation between roll 1 and sum of rolls is: " << pStat->GetCorrelation() << endl;
+
   
   delete myDice6;
-  delete myDice100;
-  delete pRecorder;
+  delete pStat;
+  delete pAve;
 }
